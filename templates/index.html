@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O.D.I.N. | Optical Detection & Intelligent Navigation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <div class="shell">
+        <header class="nav">
+            <a class="brand" href="#top">
+                <img src="{{ url_for('static', filename='odin_logo.png') }}" alt="O.D.I.N. logo">
+                <span>
+                    <b>O.D.I.N.</b>
+                    <small>OPTICAL DETECTION &amp; INTELLIGENT NAVIGATION</small>
+                </span>
+            </a>
+            <div class="nav-right">
+                <span class="live-dot"></span>
+                <span>ARCHIVE ONLINE</span>
+            </div>
+        </header>
+
+        <main id="top">
+            <section class="hero">
+                <div class="hero-copy">
+                    <div class="kicker"><span></span> O.D.I.N. IMAGE ARCHIVE</div>
+                    <h1>Every capture.<br><em>Every day.</em></h1>
+                    <p>O.D.I.N. keeps every camera capture safely organized by date — simple, clean and ready to review.</p>
+                    <div class="hero-actions">
+                        <label class="primary-btn" for="imageFile">＋ Add Capture</label>
+                        <input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+                        <button class="ghost-btn" id="refreshBtn">↻ Refresh Archive</button>
+                    </div>
+                    <div class="upload-state" id="uploadState">Waiting for a capture.</div>
+                </div>
+
+                <div class="hero-emblem">
+                    <div class="emblem-ring"></div>
+                    <img src="{{ url_for('static', filename='odin_logo.png') }}" alt="O.D.I.N. emblem">
+                    <div class="emblem-glow"></div>
+                </div>
+            </section>
+
+            <section class="stats">
+                <article class="stat-card">
+                    <span class="stat-icon">◈</span>
+                    <div><small>TOTAL CAPTURES</small><strong id="totalCount">0</strong></div>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon">◷</span>
+                    <div><small>TODAY</small><strong id="todayCount">0</strong></div>
+                </article>
+                <article class="stat-card wide">
+                    <span class="stat-icon">▣</span>
+                    <div><small>STORAGE LOGIC</small><strong>DATE-WISE</strong></div>
+                    <span class="stat-note">YYYY / MM / DD → captures</span>
+                </article>
+            </section>
+
+            <section class="archive-head">
+                <div>
+                    <div class="kicker"><span></span> CAPTURE VAULT</div>
+                    <h2>Image Archive</h2>
+                </div>
+                <div class="archive-tools">
+                    <label class="search-box">
+                        <span>⌕</span>
+                        <input id="searchInput" type="search" placeholder="Search date..." autocomplete="off">
+                    </label>
+                </div>
+            </section>
+
+            <section id="archive" class="archive"></section>
+
+            <section id="emptyArchive" class="empty-archive">
+                <div class="empty-orbit">◎</div>
+                <h3>No captures yet</h3>
+                <p>Upload a test image now, or connect the ESP32-CAM to send captures to this archive.</p>
+                <label class="primary-btn" for="imageFile">Add First Capture</label>
+            </section>
+        </main>
+
+        <footer>
+            <div><b>O.D.I.N.</b> — Optical Detection &amp; Intelligent Navigation</div>
+            <div>CAPTURE • STORE • REMEMBER</div>
+        </footer>
+    </div>
+
+    <div class="viewer" id="viewer" aria-hidden="true">
+        <button class="viewer-close" id="viewerClose">×</button>
+        <div class="viewer-inner">
+            <img id="viewerImage" src="" alt="Captured image">
+            <div class="viewer-meta" id="viewerMeta"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
